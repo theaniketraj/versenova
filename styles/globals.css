@@ -15,3 +15,78 @@ h6 {
 body {
   font-family: var(--font-secondary);
 }
+
+/* Mobile-specific optimizations */
+@layer utilities {
+  /* Improve text rendering on mobile */
+  .text-rendering-optimized {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Better touch targets for mobile */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Line clamping utility for mobile */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Improved focus styles for mobile accessibility */
+  .focus-visible-enhanced:focus-visible {
+    outline: 2px solid theme('colors.blue.500');
+    outline-offset: 2px;
+    border-radius: 0.375rem;
+  }
+
+  /* Mobile-optimized scroll behavior */
+  @media (max-width: 768px) {
+    .mobile-scroll-smooth {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}
+
+/* Base optimizations */
+@layer base {
+  html {
+    @apply text-rendering-optimized mobile-scroll-smooth;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+
+  /* Improve tap targets on mobile */
+  @media (max-width: 768px) {
+    button, 
+    [role="button"], 
+    input[type="submit"], 
+    input[type="button"], 
+    input[type="reset"],
+    a {
+      min-height: 44px;
+      min-width: 44px;
+      @apply touch-manipulation;
+    }
+  }
+
+  /* Better line height for reading on mobile */
+  @media (max-width: 640px) {
+    p {
+      line-height: 1.7;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1.25;
+      word-wrap: break-word;
+      hyphens: auto;
+    }
+  }
+}

@@ -14,7 +14,7 @@ export default function Index({ posts, globalData }) {
       <SEO title={globalData.name} description={globalData.blogTitle} />
       <Header name={globalData.name} />
       <main className="w-full">
-        <h1 className="mb-12 text-3xl text-center lg:text-5xl">
+        <h1 className="mb-8 text-2xl text-center sm:text-3xl lg:text-5xl sm:mb-12 px-4">
           {globalData.blogTitle}
         </h1>
         <ul className="w-full">
@@ -26,20 +26,20 @@ export default function Index({ posts, globalData }) {
               <Link
                 as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
                 href={`/posts/[slug]`}
-                className="block px-6 py-6 lg:py-10 lg:px-16 focus:outline-none focus:ring-4">
+                className="block px-4 py-4 sm:px-6 sm:py-6 lg:py-10 lg:px-16 focus:outline-none focus:ring-4 active:bg-opacity-30 transition-all">
 
                 {post.data.date && (
-                  <p className="mb-3 font-bold uppercase opacity-60" data-sb-field-path="date">
+                  <p className="mb-2 sm:mb-3 text-sm sm:text-base font-bold uppercase opacity-60" data-sb-field-path="date">
                     {post.data.date}
                   </p>
                 )}
-                <h2 className="text-2xl md:text-3xl" data-sb-field-path="title">{post.data.title}</h2>
+                <h2 className="text-xl sm:text-2xl md:text-3xl leading-tight" data-sb-field-path="title">{post.data.title}</h2>
                 {post.data.description && (
-                  <p className="mt-3 text-lg opacity-60" data-sb-field-path="description">
+                  <p className="mt-2 sm:mt-3 text-base sm:text-lg opacity-60 line-clamp-3" data-sb-field-path="description">
                     {post.data.description}
                   </p>
                 )}
-                <ArrowIcon className="mt-4" />
+                <ArrowIcon className="mt-3 sm:mt-4" />
 
               </Link>
             </li>

@@ -49,7 +49,7 @@ const moonIcon = (
 
 const ThemeSwitcher = () => {
   return (
-    <div className="flex justify-center p-1 mt-6 bg-white dark:bg-gray-900 rounded-3xl">
+    <div className="flex justify-center p-1 mt-4 sm:mt-6 bg-white dark:bg-gray-900 rounded-3xl">
       <button
         type="button"
         aria-label="Use Dark Mode"
@@ -57,7 +57,7 @@ const ThemeSwitcher = () => {
           document.documentElement.classList.add('dark');
           localStorage.setItem('theme', 'dark');
         }}
-        className="flex items-center justify-center w-24 h-10 p-2 pr-2 transition dark:bg-primary rounded-3xl align-center"
+        className="flex items-center justify-center w-20 h-10 sm:w-24 sm:h-10 p-2 pr-2 transition dark:bg-primary rounded-3xl align-center touch-manipulation"
       >
         {moonIcon}
       </button>
@@ -69,7 +69,7 @@ const ThemeSwitcher = () => {
           document.documentElement.classList.remove('dark');
           localStorage.setItem('theme', 'light');
         }}
-        className="flex items-center justify-center w-24 h-10 p-2 pr-2 transition bg-primary dark:bg-transparent rounded-3xl align-center"
+        className="flex items-center justify-center w-20 h-10 sm:w-24 sm:h-10 p-2 pr-2 transition bg-primary dark:bg-transparent rounded-3xl align-center touch-manipulation"
       >
         {sunIcon}
       </button>
@@ -79,8 +79,8 @@ const ThemeSwitcher = () => {
 
 export default function Footer({ copyrightText }) {
   return (
-    <footer className="flex flex-col items-center py-16">
-      <p className="mb-3 font-bold uppercase dark:text-white opacity-60">
+    <footer className="flex flex-col items-center py-12 sm:py-16 px-4">
+      <p className="mb-3 text-sm sm:text-base font-bold uppercase dark:text-white opacity-60 text-center">
         {copyrightText}
       </p>
       <ThemeSwitcher />
