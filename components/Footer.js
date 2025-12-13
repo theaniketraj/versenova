@@ -83,6 +83,9 @@ export default function Footer({ copyrightText }) {
       <p className="mb-3 text-sm sm:text-base font-bold uppercase dark:text-white opacity-60 text-center">
         {copyrightText}
       </p>
+      <p className="mb-3 text-xs sm:text-sm dark:text-white opacity-60 text-center">
+        © <a href="https://theaniketraj.netlify.app" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">Aniket Raj</a>
+      </p>
       <ThemeSwitcher />
     </footer>
   );
