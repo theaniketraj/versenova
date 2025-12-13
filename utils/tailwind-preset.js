@@ -179,7 +179,7 @@ module.exports = {
             css: {
               color: theme('colors.gray.300'),
               '[class~="lead"]': { color: theme('colors.gray.400') },
-              a: { 
+              a: {
                 color: theme('colors.gray.100'),
                 textDecoration: 'underline',
                 textDecorationColor: theme('colors.gray.500'),
@@ -204,7 +204,7 @@ module.exports = {
               h2: { color: theme('colors.gray.100') },
               h3: { color: theme('colors.gray.100') },
               h4: { color: theme('colors.gray.100') },
-              code: { 
+              code: {
                 color: theme('colors.gray.100'),
                 backgroundColor: theme('colors.gray.800'),
                 padding: '0.25rem 0.5rem',

@@ -27,7 +27,7 @@ const components = {
   // useful for conditionally loading components for certain routes.
   // See the notes in README.md for more details.
   Head,
-  img: CustomImage
+  img: CustomImage,
 };
 
 export default function PostPage({
@@ -36,10 +36,8 @@ export default function PostPage({
   prevPost,
   nextPost,
   globalData,
-  slug
+  slug,
 }) {
-
-
   return (
     <Layout>
       <SEO
@@ -47,26 +45,40 @@ export default function PostPage({
         description={frontMatter.description}
       />
       <Header name={globalData.name} />
-      <article className="px-4 sm:px-6 md:px-0" data-sb-object-id={`posts/${slug}.mdx`}>
+      <article
+        className="px-4 sm:px-6 md:px-0"
+        data-sb-object-id={`posts/${slug}.mdx`}
+      >
         <header>
-          <h1 className="mb-8 sm:mb-12 text-2xl sm:text-3xl text-center md:text-5xl dark:text-white leading-tight" data-sb-field-path="title">
+          <h1
+            className="mb-8 sm:mb-12 text-2xl sm:text-3xl text-center md:text-5xl dark:text-white leading-tight"
+            data-sb-field-path="title"
+          >
             {frontMatter.title}
           </h1>
           {frontMatter.description && (
-            <p className="mb-4 text-lg sm:text-xl leading-relaxed" data-sb-field-path="description">{frontMatter.description}</p>
+            <p
+              className="mb-4 text-lg sm:text-xl leading-relaxed"
+              data-sb-field-path="description"
+            >
+              {frontMatter.description}
+            </p>
           )}
         </header>
         <main>
-          <article className="prose prose-sm sm:prose lg:prose-lg dark:prose-dark max-w-none" data-sb-field-path="markdown_content">
+          <article
+            className="prose prose-sm sm:prose lg:prose-lg dark:prose-dark max-w-none"
+            data-sb-field-path="markdown_content"
+          >
             <MDXRemote {...source} components={components} />
           </article>
         </main>
         <div className="grid mt-8 sm:mt-12 gap-4 md:gap-0 md:grid-cols-2 lg:-mx-24">
           {prevPost && (
-            (<Link
+            <Link
               href={`/posts/${prevPost.slug}`}
-              className="flex flex-col px-6 sm:px-10 py-6 sm:py-8 text-center transition bg-white border border-gray-800 md:text-right first:rounded-t-lg md:first:rounded-tr-none md:first:rounded-l-lg last:rounded-r-lg first last:rounded-b-lg backdrop-blur-lg dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 active:bg-opacity-30 dark:hover:bg-opacity-50 dark:border-white border-opacity-10 dark:border-opacity-10 last:border-t md:border-r-0 md:last:border-r md:last:rounded-r-none touch-manipulation">
-
+              className="flex flex-col px-6 sm:px-10 py-6 sm:py-8 text-center transition bg-white border border-gray-800 md:text-right first:rounded-t-lg md:first:rounded-tr-none md:first:rounded-l-lg last:rounded-r-lg first last:rounded-b-lg backdrop-blur-lg dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 active:bg-opacity-30 dark:hover:bg-opacity-50 dark:border-white border-opacity-10 dark:border-opacity-10 last:border-t md:border-r-0 md:last:border-r md:last:rounded-r-none touch-manipulation"
+            >
               <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-500 uppercase dark:text-white dark:opacity-60">
                 Previous
               </p>
@@ -74,14 +86,13 @@ export default function PostPage({
                 {prevPost.title}
               </h4>
               <ArrowIcon className="mx-auto mt-auto transform rotate-180 md:mr-0" />
-
-            </Link>)
+            </Link>
           )}
           {nextPost && (
-            (<Link
+            <Link
               href={`/posts/${nextPost.slug}`}
-              className="flex flex-col px-6 sm:px-10 py-6 sm:py-8 text-center transition bg-white border border-t-0 border-b-0 border-gray-800 md:text-left md:first:rounded-t-lg last:rounded-b-lg first:rounded-l-lg md:last:rounded-bl-none md:last:rounded-r-lg backdrop-blur-lg dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 active:bg-opacity-30 dark:hover:bg-opacity-50 dark:border-white border-opacity-10 dark:border-opacity-10 first:border-t first:rounded-t-lg md:border-t last:border-b touch-manipulation">
-
+              className="flex flex-col px-6 sm:px-10 py-6 sm:py-8 text-center transition bg-white border border-t-0 border-b-0 border-gray-800 md:text-left md:first:rounded-t-lg last:rounded-b-lg first:rounded-l-lg md:last:rounded-bl-none md:last:rounded-r-lg backdrop-blur-lg dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 active:bg-opacity-30 dark:hover:bg-opacity-50 dark:border-white border-opacity-10 dark:border-opacity-10 first:border-t first:rounded-t-lg md:border-t last:border-b touch-manipulation"
+            >
               <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-500 uppercase dark:text-white dark:opacity-60">
                 Next
               </p>
@@ -89,8 +100,7 @@ export default function PostPage({
                 {nextPost.title}
               </h4>
               <ArrowIcon className="mx-auto mt-auto md:ml-0" />
-
-            </Link>)
+            </Link>
           )}
         </div>
       </article>
