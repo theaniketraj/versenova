@@ -9,29 +9,31 @@ const FONT_SECONDARY = process.env.BLOG_FONT_BODY || 'sans-serif';
 const hoveredSiblingPlugin = plugin(function ({ addVariant, e }) {
   addVariant('hovered-sibling', ({ container }) => {
     container.walkRules((rule) => {
-      rule.selector = `:hover + .hovered-sibling\\:${rule.selector.slice(1)}`;
+      rule.selector = String.raw`:hover + .hovered-sibling\:${rule.selector.slice(1)}`;
     });
   });
 });
 
 const themesConfig = plugin(function ({ addComponents }) {
-  const cssVars = {};
+  const themeClasses = {};
 
-  Object.keys(COLOR_THEMES[THEME].colors).forEach((key) => {
-    cssVars[`--color-${key}`] = `${COLOR_THEMES[THEME].colors[key]}`;
+  Object.keys(COLOR_THEMES).forEach((themeName) => {
+    const cssVars = {};
+    Object.keys(COLOR_THEMES[themeName].colors).forEach((key) => {
+      cssVars[`--color-${key}`] = `${COLOR_THEMES[themeName].colors[key]}`;
+    });
+
+    cssVars['--font-primary'] = FONT_THEMES[FONT_PRIMARY];
+    cssVars['--font-secondary'] = FONT_THEMES[FONT_SECONDARY];
+
+    themeClasses[`.theme-${themeName}`] = cssVars;
   });
 
-  cssVars['--font-primary'] = FONT_THEMES[FONT_PRIMARY];
-  cssVars['--font-secondary'] = FONT_THEMES[FONT_SECONDARY];
-
-  const themeCompiled = {
-    '.theme-compiled': cssVars,
-  };
-
-  addComponents(themeCompiled);
+  addComponents(themeClasses);
 });
 
 module.exports = {
+  safelist: Object.keys(COLOR_THEMES).map(theme => `theme-${theme}`),
   theme: {
     extend: {
       backgroundImage: {
@@ -46,8 +48,8 @@ module.exports = {
         'gradient-4': 'var(--color-gradient-4)',
       },
       fonts: {
-        primary: 'var(--font-primary)',
-        secondary: 'var(--font-secondary)',
+        primary: 'var(--font-serif)',
+        secondary: 'var(--font-sans)',
       },
       theme: {
         bejamas: {

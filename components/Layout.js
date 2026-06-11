@@ -24,6 +24,18 @@ export default function Layout({ children }) {
     } else if (lightMode) {
       document.documentElement.classList.remove('dark');
     }
+
+    const colorTheme = localStorage.getItem('color-theme');
+    if (colorTheme) {
+      const classes = Array.from(document.documentElement.classList);
+      classes.forEach((cls) => {
+        if (cls.startsWith('theme-')) {
+          document.documentElement.classList.remove(cls);
+        }
+      });
+      document.documentElement.classList.add(`theme-${colorTheme}`);
+    }
+
     return;
   };
 

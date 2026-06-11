@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
 import rehypePrism from '@mapbox/rehype-prism';
@@ -48,6 +48,8 @@ export const getPostBySlug = async (slug) => {
   const source = fs.readFileSync(postFilePath);
 
   const { content, data } = matter(source);
+  const words = content.trim().split(/\s+/).length;
+  const readingTime = Math.ceil(words / 200);
 
   const mdxSource = await serialize(content, {
     // Optionally pass remark/rehype plugins
@@ -58,7 +60,7 @@ export const getPostBySlug = async (slug) => {
     scope: data,
   });
 
-  return { mdxSource, data, postFilePath };
+  return { mdxSource, data, postFilePath, readingTime };
 };
 
 export const getNextPostBySlug = (slug) => {

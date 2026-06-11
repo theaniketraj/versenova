@@ -4,7 +4,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en" className="theme-compiled">
+      <Html lang="en" className="theme-default">
         <Head>
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -15,7 +15,7 @@ class MyDocument extends Document {
           <meta name="format-detection" content="telephone=no" />
         </Head>
         <body
-          className={`antialiased text-base sm:text-lg bg-white dark:bg-gray-900 dark:text-white leading-base`}
+          className={`antialiased text-base sm:text-lg bg-white dark:bg-slate-950 dark:text-slate-50 leading-base selection:bg-primary/20 selection:text-primary dark:selection:bg-primary/30 dark:selection:text-white`}
         >
           <Main />
           <NextScript />

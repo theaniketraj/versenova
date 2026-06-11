@@ -1,3 +1,8 @@
+import { useState, useEffect } from 'react';
+import { COLOR_THEMES } from '../themes';
+
+const THEME_KEYS = Object.keys(COLOR_THEMES);
+
 const sunIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -47,32 +52,87 @@ const moonIcon = (
   </svg>
 );
 
-const ThemeSwitcher = () => {
-  return (
-    <div className="flex justify-center p-1 mt-4 sm:mt-6 bg-white dark:bg-gray-900 rounded-3xl">
-      <button
-        type="button"
-        aria-label="Use Dark Mode"
-        onClick={() => {
-          document.documentElement.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
-        }}
-        className="flex items-center justify-center w-20 h-10 sm:w-24 sm:h-10 p-2 pr-2 transition dark:bg-primary rounded-3xl align-center touch-manipulation"
-      >
-        {moonIcon}
-      </button>
+const paletteIcon = (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="20" height="20" 
+    fill="none" viewBox="0 0 24 24" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className="text-gray-500 dark:text-gray-400 group-hover:text-primary transition-colors"
+  >
+    <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 .942-.42 1.848-1.127 2.455C20.125 15.1 19 15.39 19 15.39c-1.173 0-2.072-.888-2.072-2.05v-.734a3.868 3.868 0 00-3.868-3.868H11.5a1.5 1.5 0 100 3h1.562a.868.868 0 01.868.868v.734c0 2.227 1.85 4.05 4.072 4.05 0 0 1.536.315 2.656 1.104A4.981 4.981 0 0112 22z"></path>
+    <circle cx="7.5" cy="10.5" r="1.5"></circle>
+    <circle cx="10.5" cy="7.5" r="1.5"></circle>
+    <circle cx="14.5" cy="8.5" r="1.5"></circle>
+  </svg>
+);
 
-      <button
-        type="button"
-        aria-label="Use Light Mode"
-        onClick={() => {
-          document.documentElement.classList.remove('dark');
-          localStorage.setItem('theme', 'light');
-        }}
-        className="flex items-center justify-center w-20 h-10 sm:w-24 sm:h-10 p-2 pr-2 transition bg-primary dark:bg-transparent rounded-3xl align-center touch-manipulation"
-      >
-        {sunIcon}
-      </button>
+const ThemeSwitcher = () => {
+  const [colorTheme, setColorTheme] = useState('default');
+
+  useEffect(() => {
+    const current = localStorage.getItem('color-theme') || 'default';
+    setColorTheme(current);
+  }, []);
+
+  const handleThemeCycle = () => {
+    const currentIndex = THEME_KEYS.indexOf(colorTheme);
+    const nextIndex = (currentIndex + 1) % THEME_KEYS.length;
+    const nextTheme = THEME_KEYS[nextIndex];
+    
+    const classes = Array.from(document.documentElement.classList);
+    classes.forEach((cls) => {
+      if (cls.startsWith('theme-')) {
+        document.documentElement.classList.remove(cls);
+      }
+    });
+    document.documentElement.classList.add(`theme-${nextTheme}`);
+    localStorage.setItem('color-theme', nextTheme);
+    setColorTheme(nextTheme);
+  };
+
+  return (
+    <div className="flex items-center gap-2 mt-4 sm:mt-6">
+      <div className="flex justify-center p-1 bg-white dark:bg-gray-900 rounded-3xl shadow-sm">
+        <button
+          type="button"
+          aria-label="Use Dark Mode"
+          onClick={() => {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+          }}
+          className="flex items-center justify-center w-16 h-10 sm:w-20 sm:h-10 p-2 pr-2 transition dark:bg-primary rounded-3xl align-center touch-manipulation"
+        >
+          {moonIcon}
+        </button>
+
+        <button
+          type="button"
+          aria-label="Use Light Mode"
+          onClick={() => {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+          }}
+          className="flex items-center justify-center w-16 h-10 sm:w-20 sm:h-10 p-2 pr-2 transition bg-primary dark:bg-transparent rounded-3xl align-center touch-manipulation"
+        >
+          {sunIcon}
+        </button>
+      </div>
+
+      <div className="flex justify-center p-1 bg-white dark:bg-gray-900 rounded-3xl shadow-sm">
+        <button
+          type="button"
+          aria-label="Cycle Color Theme"
+          onClick={handleThemeCycle}
+          className="group flex flex-col items-center justify-center w-16 h-10 sm:w-20 sm:h-10 transition bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 rounded-3xl touch-manipulation"
+        >
+          {paletteIcon}
+          <span className="text-[9px] mt-0.5 opacity-60 uppercase tracking-widest font-sans font-bold">{colorTheme}</span>
+        </button>
+      </div>
     </div>
   );
 };

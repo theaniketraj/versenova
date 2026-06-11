@@ -10,7 +10,7 @@ export default function Header({ name }) {
           alt="Logo"
           width={48}
           height={48}
-          className="object-cover"
+          className="object-cover w-auto h-auto"
         />
       </div>
       <p className="text-xl sm:text-2xl text-center dark:text-white">

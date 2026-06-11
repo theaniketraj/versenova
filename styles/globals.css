@@ -1,7 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@tailwind variants;
+@import 'tailwindcss';
+@config "../tailwind.config.js";
 
 h1,
 h2,
@@ -9,11 +7,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-primary);
+  font-family: var(--font-serif);
 }
 
 body {
-  font-family: var(--font-secondary);
+  font-family: var(--font-sans);
 }
 
 /* Mobile-specific optimizations */
@@ -34,6 +32,7 @@ body {
   /* Line clamping utility for mobile */
   .line-clamp-3 {
     display: -webkit-box;
+    line-clamp: 3;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -41,7 +40,7 @@ body {
 
   /* Improved focus styles for mobile accessibility */
   .focus-visible-enhanced:focus-visible {
-    outline: 2px solid theme('colors.blue.500');
+    outline: 2px solid var(--color-blue-500, #3b82f6);
     outline-offset: 2px;
     border-radius: 0.375rem;
   }
@@ -58,9 +57,17 @@ body {
 /* Base optimizations */
 @layer base {
   html {
-    @apply text-rendering-optimized mobile-scroll-smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+  }
+  @media (max-width: 768px) {
+    html {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 
   /* Improve tap targets on mobile */
@@ -73,7 +80,8 @@ body {
     a {
       min-height: 44px;
       min-width: 44px;
-      @apply touch-manipulation;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
   }
 
@@ -122,5 +130,41 @@ body {
   * {
     scrollbar-width: thin;
     scrollbar-color: var(--color-primary) transparent;
+  }
+
+  .theme-default {
+    --color-primary: #7d7aff;
+    --color-gradient-1: #7d7aff;
+    --color-gradient-2: #2121e2;
+    --color-gradient-3: #00fff0;
+    --color-gradient-4: #8785ff;
+  }
+  .theme-bejamas {
+    --color-primary: #ff8585;
+    --color-gradient-1: #7d7aff;
+    --color-gradient-2: #2121e2;
+    --color-gradient-3: #ff76b8;
+    --color-gradient-4: #001aff;
+  }
+  .theme-netlify {
+    --color-primary: #00a354;
+    --color-gradient-1: #00f0ff;
+    --color-gradient-2: #00f0ff;
+    --color-gradient-3: #faff00;
+    --color-gradient-4: #00f0ff;
+  }
+  .theme-reddie {
+    --color-primary: #ff4d4d;
+    --color-gradient-1: #ffc700;
+    --color-gradient-2: #ff85dd;
+    --color-gradient-3: #ff85dd;
+    --color-gradient-4: #ff8585;
+  }
+  .theme-greenie {
+    --color-primary: #c78500;
+    --color-gradient-1: #ffcc81;
+    --color-gradient-2: #00f37f;
+    --color-gradient-3: #00f37f;
+    --color-gradient-4: #ffcc81;
   }
 }
