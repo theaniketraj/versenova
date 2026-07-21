@@ -13,6 +13,8 @@ class MyDocument extends Document {
             content="default"
           />
           <meta name="format-detection" content="telephone=no" />
+          <link rel="manifest" href="/manifest.json" />
+          <meta name="theme-color" content="#ffffff" />
         </Head>
         <body
           className={`antialiased text-base sm:text-lg bg-white dark:bg-slate-950 dark:text-slate-50 leading-base selection:bg-primary/20 selection:text-primary dark:selection:bg-primary/30 dark:selection:text-white`}

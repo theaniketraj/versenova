@@ -33,7 +33,7 @@ const themesConfig = plugin(function ({ addComponents }) {
 });
 
 module.exports = {
-  safelist: Object.keys(COLOR_THEMES).map(theme => `theme-${theme}`),
+  safelist: Object.keys(COLOR_THEMES).map((theme) => `theme-${theme}`),
   theme: {
     extend: {
       backgroundImage: {

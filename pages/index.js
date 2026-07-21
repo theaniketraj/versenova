@@ -19,7 +19,11 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 24 } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 300, damping: 24 },
+  },
 };
 
 export default function Index({ posts, globalData }) {
@@ -27,7 +31,7 @@ export default function Index({ posts, globalData }) {
     <Layout>
       <Header name={globalData.name} />
       <main className="w-full">
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -35,8 +39,8 @@ export default function Index({ posts, globalData }) {
         >
           {globalData.blogTitle}
         </motion.h1>
-        
-        <motion.ul 
+
+        <motion.ul
           variants={containerVariants}
           initial="hidden"
           animate="show"
@@ -60,28 +64,34 @@ export default function Index({ posts, globalData }) {
                     className="mb-4 text-xs font-semibold tracking-wider uppercase opacity-50 font-sans"
                     data-sb-field-path="date"
                   >
-                    {new Date(post.data.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    {new Date(post.data.date).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })}
                   </p>
                 )}
-                
+
                 <h2
                   className="text-xl sm:text-2xl font-serif leading-snug mb-4 group-hover:text-primary transition-colors duration-300"
                   data-sb-field-path="title"
                 >
                   {post.data.title}
                 </h2>
-                
+
                 {post.data.description && (
                   <p
-                    className="text-sm sm:text-base opacity-70 line-clamp-3 mb-6 font-sans leading-relaxed flex-grow"
+                    className="text-sm sm:text-base opacity-70 line-clamp-3 mb-6 font-sans leading-relaxed grow"
                     data-sb-field-path="description"
                   >
                     {post.data.description}
                   </p>
                 )}
-                
+
                 <div className="mt-auto pt-4 border-t border-gray-800/5 dark:border-white/5 flex items-center text-sm font-medium opacity-60 group-hover:opacity-100 transition-opacity">
-                  <span className="font-sans">Read {post.data.format === 'poem' ? 'poem' : 'thought'}</span>
+                  <span className="font-sans">
+                    Read {post.data.format === 'poem' ? 'poem' : 'thought'}
+                  </span>
                   <ArrowIcon className="ml-2 transform group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>

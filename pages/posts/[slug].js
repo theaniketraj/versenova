@@ -21,8 +21,8 @@ const AnimatedP = ({ children }) => (
   <motion.p
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-50px" }}
-    transition={{ duration: 0.6, ease: "easeOut" }}
+    viewport={{ once: true, margin: '-50px' }}
+    transition={{ duration: 0.6, ease: 'easeOut' }}
   >
     {children}
   </motion.p>
@@ -32,8 +32,8 @@ const AnimatedBlockquote = ({ children }) => (
   <motion.blockquote
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true, margin: "-50px" }}
-    transition={{ duration: 0.6, ease: "easeOut" }}
+    viewport={{ once: true, margin: '-50px' }}
+    transition={{ duration: 0.6, ease: 'easeOut' }}
   >
     {children}
   </motion.blockquote>
@@ -69,14 +69,26 @@ export default function PostPage({
   return (
     <Layout>
       <Head>
-        <title>{frontMatter.title} - {globalData.name}</title>
-        <meta name="description" content={frontMatter.description || `Read ${frontMatter.title} on VerseNova`} />
+        <title>
+          {frontMatter.title} - {globalData.name}
+        </title>
+        <meta
+          name="description"
+          content={
+            frontMatter.description || `Read ${frontMatter.title} on VerseNova`
+          }
+        />
         <meta property="og:title" content={frontMatter.title} />
-        <meta property="og:description" content={frontMatter.description || `Read ${frontMatter.title} on VerseNova`} />
+        <meta
+          property="og:description"
+          content={
+            frontMatter.description || `Read ${frontMatter.title} on VerseNova`
+          }
+        />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      
+
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -85,9 +97,17 @@ export default function PostPage({
       >
         <div className="relative rounded-full">
           {/* Scroll Progress Border */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" style={{ overflow: 'visible' }}>
+          <svg
+            className="absolute inset-0 w-full h-full pointer-events-none z-10"
+            style={{ overflow: 'visible' }}
+          >
             <motion.rect
-              x="0" y="0" width="100%" height="100%" rx="24" ry="24"
+              x="0"
+              y="0"
+              width="100%"
+              height="100%"
+              rx="24"
+              ry="24"
               fill="none"
               className="stroke-primary"
               strokeWidth="3"
@@ -98,7 +118,10 @@ export default function PostPage({
             href="/"
             className="group relative z-20 flex items-center gap-2 px-4 py-2 text-sm font-medium tracking-wide transition-all bg-white/5 border border-gray-800/10 dark:border-white/10 rounded-full backdrop-blur-md hover:bg-white/20 hover:scale-105 active:scale-95 shadow-sm hover:shadow-md text-slate-700 dark:text-slate-200"
           >
-            <ArrowIcon className="transform rotate-180 w-4 h-4 transition-transform group-hover:-translate-x-1" color="text-slate-700 dark:text-slate-200" />
+            <ArrowIcon
+              className="transform rotate-180 w-4 h-4 transition-transform group-hover:-translate-x-1"
+              color="text-slate-700 dark:text-slate-200"
+            />
             <span>Home</span>
           </Link>
         </div>
@@ -113,7 +136,11 @@ export default function PostPage({
           <div className="flex justify-center items-center gap-3 mb-6 text-xs font-semibold tracking-widest uppercase opacity-50 font-sans">
             {frontMatter.date && (
               <time dateTime={frontMatter.date}>
-                {new Date(frontMatter.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                {new Date(frontMatter.date).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                })}
               </time>
             )}
             {frontMatter.date && readingTime && <span>&bull;</span>}
@@ -138,7 +165,7 @@ export default function PostPage({
           <article
             className={`prose sm:prose-lg lg:prose-xl dark:prose-dark max-w-3xl mx-auto transition-all ${
               isPoem
-                ? 'prose-p:text-center prose-p:font-serif prose-p:leading-loose prose-headings:text-center prose-headings:font-serif prose-blockquote:text-center prose-blockquote:border-none prose-blockquote:italic prose-blockquote:text-2xl prose-blockquote:opacity-70 prose-a:font-serif'
+                ? 'prose-p:text-center prose-p:font-serif prose-p:leading-loose prose-p:my-0 prose-headings:text-center prose-headings:font-serif prose-blockquote:text-center prose-blockquote:border-none prose-blockquote:italic prose-blockquote:text-2xl prose-blockquote:opacity-70 prose-a:font-serif'
                 : 'prose-p:text-left prose-p:font-sans prose-p:leading-relaxed prose-headings:text-left prose-headings:font-sans prose-blockquote:border-l-4 prose-blockquote:pl-6 prose-a:font-sans'
             }`}
             data-sb-field-path="markdown_content"

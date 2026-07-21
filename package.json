@@ -7,11 +7,11 @@
     "url": "https://github.com/theaniketraj/versenova/issues"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "next --webpack",
     "dev:watch": "next-remote-watch ./posts",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
-    "export": "next build && next export",
+    "export": "next build --webpack && next export",
     "lint": "next lint"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "gray-matter": "^4.0.3",
     "next": "^16.2.9",
     "next-mdx-remote": "^6.0.0",
+    "next-pwa": "^5.6.0",
     "next-remote-watch": "2.0.0",
     "prismjs": "^1.30.0",
     "react": "^19.2.7",
@@ -30,8 +31,6 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
-    "@stackbit/cms-git": "^1.0.38",
-    "@stackbit/types": "^2.1.15",
     "autoprefixer": "^10.5.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.2.9",

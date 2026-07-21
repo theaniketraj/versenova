@@ -8,7 +8,7 @@ export function GradientBackground({ variant, className }) {
       [styles.colorBackground]: variant === 'large',
       [styles.colorBackgroundBottom]: variant === 'small',
     },
-    className
+    className,
   );
 
   return <div className={classes} />;

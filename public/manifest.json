@@ -1,0 +1,16 @@
+{
+  "name": "VerseNova",
+  "short_name": "VerseNova",
+  "description": "A beautiful platform for poetry",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}

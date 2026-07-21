@@ -6,7 +6,7 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
-  safelist: Object.keys(COLOR_THEMES).map(theme => `theme-${theme}`),
+  safelist: Object.keys(COLOR_THEMES).map((theme) => `theme-${theme}`),
   darkMode: 'class',
   presets: [require('./utils/tailwind-preset')],
 };
